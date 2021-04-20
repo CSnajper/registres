@@ -2,6 +2,7 @@ package com.in4mo.registers.service;
 
 import com.in4mo.registers.dao.RegistryRepository;
 import com.in4mo.registers.model.Registry;
+import com.in4mo.registers.rest.dto.RegistryDto;
 import com.in4mo.registers.rest.dto.RegistryTransferDto;
 import com.in4mo.registers.rest.dto.RegistryRechargeDto;
 import com.in4mo.registers.rest.error.RegistryNotFoundException;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RegistryService {
@@ -33,5 +37,9 @@ public class RegistryService {
 
         fromRegistry.minusAmount(dto.getAmount());
         toRegistry.addAmount(dto.getAmount());
+    }
+
+    public List<RegistryDto> list() {
+        return registryRepository.findAll().stream().map(registry -> new RegistryDto(registry.getName(), registry.getAmount())).collect(Collectors.toList());
     }
 }
