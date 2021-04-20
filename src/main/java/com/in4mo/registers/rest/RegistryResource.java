@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController("/registry")
 public class RegistryResource {
 
@@ -22,7 +24,7 @@ public class RegistryResource {
     }
 
     @RequestMapping(value = "/recharge", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void recharge(@RequestBody RegistryRechargeDto registryRechargeDto) {
+    public void recharge(@RequestBody @Valid RegistryRechargeDto registryRechargeDto) {
         registryService.recharge(registryRechargeDto);
     }
 
