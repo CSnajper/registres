@@ -17,3 +17,8 @@ Application was built with Spring boot initializer available here: https://start
 ###REST API
 REST API can be tested with swagger UI:
 http://localhost:8080/swagger-ui.html
+
+### #TODO LIST
+- Document API
+- Document Java Code
+- Make tests to use embedded database
