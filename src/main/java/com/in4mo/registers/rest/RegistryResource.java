@@ -16,9 +16,9 @@ public class RegistryResource {
     @Autowired
     private RegistryService registryService;
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/health", method = RequestMethod.GET)
     public String home() {
-        return "Greetings from Registry App!";
+        return "OK";
     }
 
     @RequestMapping(value = "/recharge", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -27,8 +27,7 @@ public class RegistryResource {
     }
 
     @RequestMapping(value = "/transfer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void recharge(@RequestBody RegistryTransferDto registryTransferDto) {
+    public void transfer(@RequestBody RegistryTransferDto registryTransferDto) {
         registryService.transfer(registryTransferDto);
     }
-
 }
